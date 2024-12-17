@@ -1,0 +1,179 @@
+SQLITE
+(1) Write next to each section or action what it does:
+
+1. Create/Drop table:
+CREATE TABLE shopping (id INTEGER PRIMARY KEY, name TEXT, amount
+INTEGER);
+-- Create Table shopping
+DROP TABLE shopping
+-- Delete Table shopping
+
+2. Rename table:
+ALTER table shopping RENAME to shopp
+-- change the name of table shopping to shopp
+ALTER table shopp RENAME to shopping
+-- change the name of table shopp to shopping
+
+3. Insert rows into table:
+-- insert new values to table shopping
+INSERT INTO shopping VALUES (1, 'Avokado', 5);
+INSERT INTO shopping VALUES (2, 'Milk', 2);
+INSERT INTO shopping VALUES (3, 'Bread', 3);
+INSERT INTO shopping VALUES (4, 'Chocolate', 8);
+INSERT INTO shopping VALUES (5, 'Bamba', 5);
+INSERT INTO shopping VALUES (6, 'Orange', 10);
+
+4. Display table:
+-- display all the rows shopping table
+select * from shopping;
+
+5. ?
+SELECT id, name FROM shopping
+-- display only the columns name and id from the table shopping
+
+6. ?
+SELECT * FROM shopping WHERE amount > 5;
+-- display all the rows that bigger then 5
+SELECT * FROM shopping WHERE amount = 2;
+-- displat all the rows that equal to 2
+SELECT * FROM shopping WHERE name LIKE 'Bamba';
+-- display all the rows that the name equal to 'Bamba'
+
+7. ?
+DELETE from shopping WHERE name like 'Orange';
+-- delete row where name equal to 'Orange'
+
+8. ?
+UPDATE shopping SET name = 'Bisli' WHERE name LIKE 'Bamba';
+-- replace name 'Bamba' by 'Bisli'
+UPDATE shopping SET amount=1 WHERE name LIKE 'Milk';
+-- edit row which name equal to 'Milk' insert value 1 to amount
+
+9. ?
+ALTER TABLE shopping ADD COLUMN maavar;
+-- add new maavar column
+
+
+10. ? -- we used update command to set value in table shopping to column maavar except id 6
+UPDATE shopping SET maavar=6 WHERE id=1;
+UPDATE shopping SET maavar=3 WHERE id=2;
+UPDATE shopping SET maavar=12 WHERE id=3;
+UPDATE shopping SET maavar=8 WHERE id=4;
+UPDATE shopping SET maavar=5 WHERE id=5;
+
+11. ? --
+SELECT * FROM shopping WHERE amount > 1 AND maavar > 5;
+return all the raws at amount is bigger then 1 and maavar is bigger then 5
+SELECT * FROM shopping WHERE maavar BETWEEN 3 AND 5;
+maavar is in range 3-5 including
+
+12. ?
+SELECT * FROM shopping ORDER BY maavar;
+-- sorting all rows on table shopping according column maavar by ascending order
+SELECT * FROM shopping ORDER BY maavar DESC;
+-- sorting all rows on table shopping according column maavar by DE
+
+13. ?
+CREATE TABLE books (id INTEGER PRIMARY KEY, name TEXT);
+-- create new table
+INSERT INTO books VALUES (1, 'SQL PROGRAMMING');
+insert new row
+INSERT INTO books VALUES (2, 'CSHARP PROGRAMMING');
+insert new row
+DELETE FROM books;
+erase the content (all the rows) in the table
+
+14. ?
+SELECT COUNT(*)from shopping;
+-- count the rows
+SELECT MAX(amount) from shopping;
+-- return the the MAX value from amount
+SELECT AVG(amount) from shopping;
+-- display the AVG of column amount
+SELECT MIN(amount) from shopping;
+-- return the min value from column amount
+
+15. ?
+INSERT INTO shopping VALUES (6, 'Onions', 3, 6);
+-- insert new row with values (6, 'Onions', 3, 6)
+INSERT INTO shopping VALUES (7, 'Orio', 1, 8);
+-- insert new row with values (7, 'Orio', 1, 8)
+Select maavar, COUNT(*)FROM shopping GROUP BY maavar;
+-- Returns the values in the maavar column and the number of records for each value.
+
+16. ?
+SELECT id AS "SECRET", name, amount, maavar FROM shopping;
+-- diplay title id as "SECRET" and show the column name, amount, maavar in table shopping
+
+17. ?
+Select maavar, COUNT(*)FROM shopping GROUP BY maavar HAVING COUNT(*)>1
+
+18. ?
+CREATE TABLE prices (id INTEGER PRIMARY KEY, price INTEGER);
+INSERT INTO prices VALUES (1, 3);
+INSERT INTO prices VALUES (2, 7);
+INSERT INTO prices VALUES (3, 12);
+INSERT INTO prices VALUES (4, 5);
+INSERT INTO prices VALUES (5, 3);
+INSERT INTO prices VALUES (6, 2);
+INSERT INTO prices VALUES (7, 10);
+SELECT s.id, s.name, s.amount, s.maavar, p.price FROM shopping s JOIN
+prices p ON s.id=p.id
+
+19. What is calculated inside SECRET?
+SELECT s.id, s.name, s.amount, s.maavar, p.price, s.amount * p.price AS
+"SECRET" FROM shopping s JOIN prices p ON s.id=p.id
+
+20. ?
+SELECT s.id, s.name, s.amount, s.maavar, p.price FROM shopping s JOIN
+prices p ON s.id=p.id WHERE p.price = (SELECT MAX(price) FROM
+prices)
+
+(2) Solve:
+ID (INTEGER)PRIMARY KEY
+NAME (TEXT)
+CITY (TEXT)
+BIRTH (INTEGER)
+
++----+---------+------------+----------+
+| ID |  NAME   |   CITY     |  BIRTH   |
++----+---------+------------+----------+
+|  1 | SHALOM  | TEL AVIV   |   1974   |
+|  2 | YURI    | RAANANA    |   1980   |
+|  3 | ANAT    | RISHON     |   1994   |
+|  4 | DANA    | REHOVOT    |   1990   |
+|  5 | OMER    | JERUSALEM  |   1987   |
++----+---------+------------+----------+
+
+ID (INTEGER)PRIMARY KEY
+GRADE (INTEGER)
+
++----+---------+
+| ID |  GRADE  |
++----+---------+
+|  1 |   95    |
+|  2 |   70    |
+|  3 |   85    |
+|  4 |   99    |
+|  5 |   91    |
++----+---------+
+
+
+Write the queries to create the tables (without populating them)
+___________________________________________________________________
+___________________________________________________________________
+Write a query that prints all the students and the grade each student received
+___________________________________________________________________
+___________________________________________________________________
+Write a query that calculates the class average
+___________________________________________________________________
+Write a query to add a column named EXCELLENT. Then set YES if the grade is higher than 90, otherwise set NO
+___________________________________________________________________
+___________________________________________________________________
+Write a query that prints all the students and the grade each student received, but only for the students who scored above the average
+___________________________________________________________________
+___________________________________________________________________
+Write a query that prints the student and their grade for the student who received the highest grade
+_______________________________________________________________
+
+_______________________________________________________________
